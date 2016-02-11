@@ -26,7 +26,7 @@ namespace HouseholdBudget.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("AzureConnection", throwIfV1Schema: false)
         {
         }
 
@@ -34,5 +34,15 @@ namespace HouseholdBudget.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Household> Household { get; set; }
+        public DbSet<Category> Category { get; set; }
+        //public DbSet<CategoryHousehold> CategoryHousehold { get; set; }
+        public DbSet<Budget> Budget { get; set; }
+        public DbSet<BudgetItems> BudgetItems { get; set; }
+        public DbSet<Account> Account { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<Invitation> Invitation { get; set; }
+
     }
 }
