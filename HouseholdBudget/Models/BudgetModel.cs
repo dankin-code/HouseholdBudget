@@ -11,9 +11,7 @@ namespace HouseholdBudget.Models
     {
         public int Id { get; set; }
         public string HouseholdName { get; set; }
-        public string MemberName { get; set; }
-        public List<Budget> Budgets { get; set; }
-        public List<Account> Accounts { get; set; }
+        public string MemberId { get; set; }
     }
 
     public class Category
@@ -24,8 +22,11 @@ namespace HouseholdBudget.Models
 
     //public class CategoryHousehold
     //{
-    //    public virtual ICollection<Household> HouseHolds { get; set; }
-    //    public virtual ICollection<Category> Categories { get; set; }
+    //    public int Id { get; set; }
+    //    [Required]
+    //    public Household HouseHold { get; set; }
+    //    [Required]
+    //    public Category Category { get; set; }
 
     //}
 
@@ -33,17 +34,15 @@ namespace HouseholdBudget.Models
     {
         public int Id { get; set; }
         public string BudgetName { get; set; }
-        [Required]
-        public Household Household { get; set; }
+        public int HouseholdId { get; set; }
     }
 
     public class BudgetItems
     {
         public int Id { get; set; }
         public decimal Amount { get; set; }
-        public List<Category> Categories { get; set; }
-        [Required]
-        public Budget Budget { get; set; }
+        public int CategoryId { get; set; }
+        public int BudgetId { get; set; }
     }
 
     public class Account
@@ -52,10 +51,10 @@ namespace HouseholdBudget.Models
         public string AccountName { get; set; }
         public string AccountDescription { get; set; }
         public decimal Balance { get; set; }
+        public bool Reconciled { get; set; }
         public Nullable<decimal> ReconciledAmount { get; set; }
         public Nullable<decimal> ReconciledBalance { get; set; }
-        [Required]
-        public Household Household { get; set; }
+        public int HouseholdId { get; set; }
     }
 
     public class Transaction
@@ -64,14 +63,12 @@ namespace HouseholdBudget.Models
         public DateTime TransactionDate { get; set; }
         public string TransactionDescription { get; set; }
         public decimal TransactionAmount { get; set; }
-        public List<Category> Categories { get; set; }
+        public string CategoryName { get; set; }
         public int TransactionEnteredBy { get; set; }
-        public bool TransactionType { get; set; }
         public bool Reconciled { get; set; }
         public Nullable<decimal> ReconciledAmount { get; set; }
         public int ReconciledById { get; set; }
-        [Required]
-        public Account Account { get; set; }
+        public int AccountId { get; set; }
 
     }
 
@@ -80,7 +77,6 @@ namespace HouseholdBudget.Models
         public int Id { get; set; }
         public string ToEmail { get; set; }
         public int UserId { get; set; }
-        [Required]
-        public Household Household { get; set; }
+        public int HouseholdId { get; set; }
     }
 }

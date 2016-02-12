@@ -51,7 +51,6 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Id;
                 db.Invitation.Add(invitation);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

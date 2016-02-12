@@ -47,7 +47,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,TransactionEnteredBy,TransactionType,Reconciled,ReconciledAmount,ReconciledById")] Transaction transaction)
+        public async Task<ActionResult> Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,TransactionEnteredBy,TransactionType,Reconciled,ReconciledAmount,ReconciledById")] Transaction transaction)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {

@@ -11,7 +11,6 @@ namespace HouseholdBudget.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-
         }
 
         protected override void Seed(HouseholdBudget.Models.ApplicationDbContext context)
