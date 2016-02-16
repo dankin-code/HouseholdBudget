@@ -3,10 +3,12 @@
     ViewBag.Title = "Home Page";
 }
 
-@using (Html.BeginForm())
-{
-    <!--Begin household area-->
-    <h1>Household</h1>
+<br />
+<br />
+
+<!--Begin household area-->
+<div class="row">
+    <h2>Household</h2>
     <div class="table-responsive">
         <table class="table table-condensed table-striped table-hover">
             <thead>
@@ -17,29 +19,36 @@
             </thead>
         </table>
     </div>
-    <!--End household area-->
+</div>
+   
+<!--End household area-->
+<br />
+<br />
+<br />
+<br />
 
+<!--Begin Accounts area-->
+<h2>Accounts</h2>
+<div class="table-responsive">
+    <table class="table table-condensed table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Account Name</th>
+                <th>Account Description</th>
+                <th>Account Balance</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<!--End Accounts area-->
+<br />
+<br />
+<br />
+<br />
 
-    <!--Begin Accounts area-->
-    <h1>Accounts</h1>
-    <div class="table-responsive">
-        <table class="table table-condensed table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Account Name</th>
-                    <th>Account Description</th>
-                    <th>Account Balance</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-
-    <!--End Accounts area-->
-
-
-    <!--Begin Transactions area-->
-
-    <h1>Transactions</h1>
+<!--Begin Transactions area-->
+<div class="row">
+<h2>Transactions</h2>
     <div class="table-responsive">
         <table class="table table-condensed table-striped table-hover">
             <thead>
@@ -54,6 +63,10 @@
 
         </table>
     </div>
-    <!--End Transaction area-->
+</div>
+<!--End Transaction area-->
+<br />
+<br />
+<br />
+<br />
 
-}

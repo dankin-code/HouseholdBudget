@@ -57,7 +57,6 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
-               
                 db.Invitation.Add(invitation);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HouseholdBudget.Models;
+using System.Data.SqlClient;
+using Microsoft.Ajax.Utilities;
 
 namespace HouseholdBudget.Controllers
 {
@@ -55,6 +57,7 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Transaction.Add(transaction);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

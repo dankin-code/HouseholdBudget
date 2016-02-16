@@ -55,9 +55,9 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
-                //household.MemberId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Id;
-
-
+                
+                
+                //account.HouseholdId = db.Household.FirstOrDefault(u => u.HouseholdName == User.Identity.Name).Id;
                 db.Account.Add(account);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

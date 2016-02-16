@@ -51,10 +51,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
+        public async Task<ActionResult> Create([Bind(Include = "Id,BudgetName")] Budget budget)
         {
             if (ModelState.IsValid)
             {
+                budget.HouseholdId = db.Household.FirstOrDefault(u => u.HouseholdName == User.Identity.Name).Id;
                 db.Budget.Add(budget);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
