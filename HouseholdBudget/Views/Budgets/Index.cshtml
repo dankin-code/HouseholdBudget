@@ -7,12 +7,15 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create a New Budget", "Create" , null, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.BudgetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseholdId)
         </th>
         <th></th>
     </tr>
@@ -21,6 +24,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.BudgetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseholdId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

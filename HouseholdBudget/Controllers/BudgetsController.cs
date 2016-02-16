@@ -16,12 +16,14 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Budgets
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Budget.ToListAsync());
         }
 
         // GET: Budgets/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Budgets/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,7 +50,8 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BudgetName")] Budget budget)
+        [Authorize]
+        public async Task<ActionResult> Create([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +64,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Budgets/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,10 +84,13 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,BudgetName")] Budget budget)
+        [Authorize]
+        public async Task<ActionResult> Edit([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
         {
             if (ModelState.IsValid)
             {
+
+            
                 db.Entry(budget).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -91,6 +99,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Budgets/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +117,7 @@ namespace HouseholdBudget.Controllers
         // POST: Budgets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Budget budget = await db.Budget.FindAsync(id);

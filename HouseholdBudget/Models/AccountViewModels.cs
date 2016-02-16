@@ -94,6 +94,13 @@ namespace HouseholdBudget.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class JoinHousehold
+    {
+        public bool JoinTheHousehold { get; set; }
+        public string JoinCode { get; set; }
+    }
+
+
     public class ResetPasswordViewModel
     {
         [Required]

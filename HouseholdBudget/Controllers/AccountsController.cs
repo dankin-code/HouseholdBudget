@@ -16,12 +16,14 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Accounts
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Account.ToListAsync());
         }
 
         // GET: Accounts/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Accounts/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,10 +50,14 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance")] Account account)
         {
             if (ModelState.IsValid)
             {
+                //household.MemberId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Id;
+
+
                 db.Account.Add(account);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -60,6 +67,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Accounts/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,7 +87,8 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance")] Account account)
+        [Authorize]
+        public async Task<ActionResult> Edit([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance,HouseholdId")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +100,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Accounts/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +118,7 @@ namespace HouseholdBudget.Controllers
         // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Account account = await db.Account.FindAsync(id);

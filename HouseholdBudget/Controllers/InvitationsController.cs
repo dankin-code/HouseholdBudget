@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HouseholdBudget.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HouseholdBudget.Controllers
 {
@@ -16,12 +18,14 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Invitations
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Invitation.ToListAsync());
         }
 
         // GET: Invitations/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +41,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,10 +52,12 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ToEmail,UserId")] Invitation invitation)
+        [Authorize]
+        public async Task<ActionResult> Create([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
+               
                 db.Invitation.Add(invitation);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -60,6 +67,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,10 +87,12 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ToEmail,UserId")] Invitation invitation)
+        [Authorize]
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
+               
                 db.Entry(invitation).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -91,6 +101,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +119,7 @@ namespace HouseholdBudget.Controllers
         // POST: Invitations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Invitation invitation = await db.Invitation.FindAsync(id);

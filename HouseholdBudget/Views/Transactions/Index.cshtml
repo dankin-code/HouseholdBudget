@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Transaction", "Create" , null, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(model => model.TransactionAmount)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TransactionEnteredBy)
         </th>
         <th>
@@ -31,6 +34,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReconciledById)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountId)
         </th>
         <th></th>
     </tr>
@@ -47,6 +53,9 @@
             @Html.DisplayFor(modelItem => item.TransactionAmount)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.TransactionEnteredBy)
         </td>
         <td>
@@ -57,6 +66,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReconciledById)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

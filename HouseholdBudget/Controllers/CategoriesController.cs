@@ -16,12 +16,14 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Categories
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Category.ToListAsync());
         }
 
         // GET: Categories/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +50,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create([Bind(Include = "Id,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
@@ -60,6 +64,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Categories/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,6 +84,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Edit([Bind(Include = "Id,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
@@ -91,6 +97,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +115,7 @@ namespace HouseholdBudget.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Category category = await db.Category.FindAsync(id);

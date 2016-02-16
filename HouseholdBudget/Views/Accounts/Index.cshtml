@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Account", "Create",null, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
@@ -28,6 +28,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReconciledBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseholdId)
         </th>
         <th></th>
     </tr>
@@ -51,6 +54,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReconciledBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseholdId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

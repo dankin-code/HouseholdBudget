@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using HouseholdBudget.Models;
 
 namespace HouseholdBudget.Controllers
@@ -16,12 +19,14 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Households
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Household.ToListAsync());
         }
 
         // GET: Households/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +42,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Households/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,10 +53,13 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create([Bind(Include = "Id,HouseholdName,MemberId")] Household household)
         {
             if (ModelState.IsValid)
             {
+                household.MemberId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Id;
+         
                 db.Household.Add(household);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -60,6 +69,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Households/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,6 +89,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Edit([Bind(Include = "Id,HouseholdName,MemberId")] Household household)
         {
             if (ModelState.IsValid)
@@ -91,6 +102,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Households/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +120,7 @@ namespace HouseholdBudget.Controllers
         // POST: Households/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Household household = await db.Household.FindAsync(id);

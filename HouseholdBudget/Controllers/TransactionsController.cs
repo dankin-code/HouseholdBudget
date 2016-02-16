@@ -16,12 +16,14 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Transactions
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Transaction.ToListAsync());
         }
 
         // GET: Transactions/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Transactions/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,7 +50,8 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById")] Transaction transaction)
+        [Authorize]
+        public async Task<ActionResult> Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +64,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Transactions/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,7 +84,8 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById")] Transaction transaction)
+        [Authorize]
+        public async Task<ActionResult> Edit([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +97,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Transactions/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +115,7 @@ namespace HouseholdBudget.Controllers
         // POST: Transactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Transaction transaction = await db.Transaction.FindAsync(id);

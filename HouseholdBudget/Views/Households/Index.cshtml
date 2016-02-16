@@ -6,16 +6,20 @@
 
 <h2>Index</h2>
 
+
+
+@Html.ActionLink("Send an Invitation to Join Your Household" , "Create", "Invitations" ,null,new { @class = "btn btn-info"})
+
+
+
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.HouseholdName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberId)
         </th>
         <th></th>
     </tr>
@@ -26,12 +30,9 @@
             @Html.DisplayFor(modelItem => item.HouseholdName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MemberId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Leave Household", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
