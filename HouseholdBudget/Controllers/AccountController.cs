@@ -151,12 +151,13 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
-                //*****the next three lines need to be review and used in this action.after creating the database**************************
-                //var db = new ApplicationDbContext();
-                //var newHousehold = db.Households.Add(new Household { HouseholdName = model.HouseholdName });
-                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, HouseholdName = model.HouseholdName, HouseholdId =newHousehold.Id };
+                var db = new ApplicationDbContext();
+                db.Household.Add(new Household { HouseholdName = model.HouseholdName });
+                await db.SaveChangesAsync();
+                var household = db.Household.OrderByDescending(h => h.Id).First();
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, HouseholdName = model.HouseholdName };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, HouseholdId = household.Id};
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

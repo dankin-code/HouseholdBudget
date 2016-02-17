@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HouseholdBudget.Models;
-using System.Data.SqlClient;
-using Microsoft.Ajax.Utilities;
 
 namespace HouseholdBudget.Controllers
 {
@@ -19,20 +16,20 @@ namespace HouseholdBudget.Controllers
 
         // GET: Transactions
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Transaction.ToListAsync());
+            return View(db.Transaction.ToList());
         }
 
         // GET: Transactions/Details/5
         [Authorize]
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Transaction transaction = await db.Transaction.FindAsync(id);
+            Transaction transaction = db.Transaction.Find(id);
             if (transaction == null)
             {
                 return HttpNotFound();
@@ -44,6 +41,8 @@ namespace HouseholdBudget.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            ViewBag.AccountId = new SelectList(db.Account, "Id", "Name");
+            ViewBag.CategoryName = new SelectList(db.Category, "Id", "CategoryName");
             return View();
         }
 
@@ -53,13 +52,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
+        public ActionResult Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
-
                 db.Transaction.Add(transaction);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -68,13 +66,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Transactions/Edit/5
         [Authorize]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Transaction transaction = await db.Transaction.FindAsync(id);
+            Transaction transaction = db.Transaction.Find(id);
             if (transaction == null)
             {
                 return HttpNotFound();
@@ -88,12 +86,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
+        public ActionResult Edit([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(transaction).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(transaction);
@@ -101,13 +99,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Transactions/Delete/5
         [Authorize]
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Transaction transaction = await db.Transaction.FindAsync(id);
+            Transaction transaction = db.Transaction.Find(id);
             if (transaction == null)
             {
                 return HttpNotFound();
@@ -119,11 +117,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Transaction transaction = await db.Transaction.FindAsync(id);
+            Transaction transaction = db.Transaction.Find(id);
             db.Transaction.Remove(transaction);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

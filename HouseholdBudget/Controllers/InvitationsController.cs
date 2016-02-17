@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HouseholdBudget.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using SendGrid;
+using System.Net.Mail;
 
 namespace HouseholdBudget.Controllers
 {
@@ -19,20 +18,20 @@ namespace HouseholdBudget.Controllers
 
         // GET: Invitations
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Invitation.ToListAsync());
+            return View(db.Invitation.ToList());
         }
 
         // GET: Invitations/Details/5
         [Authorize]
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invitation invitation = await db.Invitation.FindAsync(id);
+            Invitation invitation = db.Invitation.Find(id);
             if (invitation == null)
             {
                 return HttpNotFound();
@@ -53,12 +52,22 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
+        public ActionResult Create([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
+
+                var myMessage = new SendGrid.SendGridMessage();
+                myMessage.AddTo(invitation.ToEmail);       //need to find how to pass a variable --ToEmail
+                myMessage.From = new MailAddress("dkinai@hotmail.com", "Daniel Kinai");
+                myMessage.Subject = "Join my budget app";
+                myMessage.Text = "Join my budget app";
+
+                var transportWeb = new SendGrid.Web("SENDGRID API KEY");
+                transportWeb.DeliverAsync(myMessage).Wait();
+
                 db.Invitation.Add(invitation);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -67,13 +76,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Invitations/Edit/5
         [Authorize]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invitation invitation = await db.Invitation.FindAsync(id);
+            Invitation invitation = db.Invitation.Find(id);
             if (invitation == null)
             {
                 return HttpNotFound();
@@ -87,13 +96,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
+        public ActionResult Edit([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
-               
                 db.Entry(invitation).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(invitation);
@@ -101,13 +109,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Invitations/Delete/5
         [Authorize]
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invitation invitation = await db.Invitation.FindAsync(id);
+            Invitation invitation = db.Invitation.Find(id);
             if (invitation == null)
             {
                 return HttpNotFound();
@@ -119,11 +127,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Invitation invitation = await db.Invitation.FindAsync(id);
+            Invitation invitation = db.Invitation.Find(id);
             db.Invitation.Remove(invitation);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -1,10 +1,10 @@
 ﻿@model HouseholdBudget.Models.Transaction
 
 @{
-    ViewBag.Title = "Enter a Transaction";
+    ViewBag.Title = "Create";
 }
 
-<h2>Enter a Transaction</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("CategoryName",null,new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,14 +78,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ReconciledById, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ReconciledById, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AccountId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AccountId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
             </div>
         </div>
 

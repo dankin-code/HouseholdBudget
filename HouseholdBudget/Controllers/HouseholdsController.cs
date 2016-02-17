@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using HouseholdBudget.Models;
 
 namespace HouseholdBudget.Controllers
@@ -20,20 +16,20 @@ namespace HouseholdBudget.Controllers
 
         // GET: Households
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Household.ToListAsync());
+            return View(db.Household.ToList());
         }
 
         // GET: Households/Details/5
         [Authorize]
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Household household = await db.Household.FindAsync(id);
+            Household household = db.Household.Find(id);
             if (household == null)
             {
                 return HttpNotFound();
@@ -54,14 +50,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,HouseholdName,MemberId")] Household household)
+        public ActionResult Create([Bind(Include = "Id,HouseholdName")] Household household)
         {
             if (ModelState.IsValid)
             {
-                household.MemberId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Id;
-         
                 db.Household.Add(household);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -70,13 +64,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Households/Edit/5
         [Authorize]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Household household = await db.Household.FindAsync(id);
+            Household household = db.Household.Find(id);
             if (household == null)
             {
                 return HttpNotFound();
@@ -90,12 +84,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,HouseholdName,MemberId")] Household household)
+        public ActionResult Edit([Bind(Include = "Id,HouseholdName")] Household household)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(household).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(household);
@@ -103,13 +97,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Households/Delete/5
         [Authorize]
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Household household = await db.Household.FindAsync(id);
+            Household household = db.Household.Find(id);
             if (household == null)
             {
                 return HttpNotFound();
@@ -121,11 +115,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Household household = await db.Household.FindAsync(id);
+            Household household = db.Household.Find(id);
             db.Household.Remove(household);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

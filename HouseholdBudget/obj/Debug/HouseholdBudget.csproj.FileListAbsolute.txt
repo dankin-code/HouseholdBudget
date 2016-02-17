@@ -33,6 +33,10 @@ C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBud
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Newtonsoft.Json.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Owin.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Owin.Security.Providers.dll
+C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\SendGrid.dll
+C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\SendGrid.SmtpApi.dll
+C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\SendGridMail.dll
+C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Net.Http.Formatting.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.Helpers.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.Mvc.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.Optimization.dll
@@ -42,6 +46,8 @@ C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBud
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.WebPages.Razor.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\WebGrease.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Newtonsoft.Json.xml
+C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Net.Http.Formatting.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.Helpers.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.Mvc.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.Optimization.xml
@@ -50,7 +56,6 @@ C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBud
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.WebPages.Deployment.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\System.Web.WebPages.Razor.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Antlr3.Runtime.pdb
-C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Newtonsoft.Json.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\EntityFramework.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\EntityFramework.SqlServer.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Microsoft.AspNet.Identity.Core.xml

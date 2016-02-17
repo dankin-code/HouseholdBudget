@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -17,20 +16,20 @@ namespace HouseholdBudget.Controllers
 
         // GET: Accounts
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Account.ToListAsync());
+            return View(db.Account.ToList());
         }
 
         // GET: Accounts/Details/5
         [Authorize]
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = await db.Account.FindAsync(id);
+            Account account = db.Account.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -51,15 +50,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance")] Account account)
+        public ActionResult Create([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance,HouseholdId")] Account account)
         {
             if (ModelState.IsValid)
             {
-                
-                
-                //account.HouseholdId = db.Household.FirstOrDefault(u => u.HouseholdName == User.Identity.Name).Id;
                 db.Account.Add(account);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -68,13 +64,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Accounts/Edit/5
         [Authorize]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = await db.Account.FindAsync(id);
+            Account account = db.Account.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -88,12 +84,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance,HouseholdId")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,AccountName,AccountDescription,Balance,Reconciled,ReconciledAmount,ReconciledBalance,HouseholdId")] Account account)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(account).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(account);
@@ -101,13 +97,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Accounts/Delete/5
         [Authorize]
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = await db.Account.FindAsync(id);
+            Account account = db.Account.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -119,11 +115,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Account account = await db.Account.FindAsync(id);
+            Account account = db.Account.Find(id);
             db.Account.Remove(account);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

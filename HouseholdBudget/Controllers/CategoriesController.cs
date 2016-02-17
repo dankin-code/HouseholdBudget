@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -17,20 +16,20 @@ namespace HouseholdBudget.Controllers
 
         // GET: Categories
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Category.ToListAsync());
+            return View(db.Category.ToList());
         }
 
         // GET: Categories/Details/5
         [Authorize]
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Category.FindAsync(id);
+            Category category = db.Category.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -51,12 +50,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CategoryName")] Category category)
+        public ActionResult Create([Bind(Include = "Id,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
             {
                 db.Category.Add(category);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,13 +64,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Categories/Edit/5
         [Authorize]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Category.FindAsync(id);
+            Category category = db.Category.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -85,12 +84,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CategoryName")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,CategoryName")] Category category)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -98,13 +97,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Categories/Delete/5
         [Authorize]
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Category.FindAsync(id);
+            Category category = db.Category.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -116,11 +115,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Category category = await db.Category.FindAsync(id);
+            Category category = db.Category.Find(id);
             db.Category.Remove(category);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

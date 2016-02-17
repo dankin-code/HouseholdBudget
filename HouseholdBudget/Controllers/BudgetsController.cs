@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -17,20 +16,20 @@ namespace HouseholdBudget.Controllers
 
         // GET: Budgets
         [Authorize]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Budget.ToListAsync());
+            return View(db.Budget.ToList());
         }
 
         // GET: Budgets/Details/5
         [Authorize]
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Budget budget = await db.Budget.FindAsync(id);
+            Budget budget = db.Budget.Find(id);
             if (budget == null)
             {
                 return HttpNotFound();
@@ -42,6 +41,7 @@ namespace HouseholdBudget.Controllers
         [Authorize]
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -51,13 +51,14 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BudgetName")] Budget budget)
+        public ActionResult Create([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
         {
             if (ModelState.IsValid)
-            {
-                budget.HouseholdId = db.Household.FirstOrDefault(u => u.HouseholdName == User.Identity.Name).Id;
+
+                budget.HouseholdId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId; 
+
                 db.Budget.Add(budget);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,13 +67,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Budgets/Edit/5
         [Authorize]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Budget budget = await db.Budget.FindAsync(id);
+            Budget budget = db.Budget.Find(id);
             if (budget == null)
             {
                 return HttpNotFound();
@@ -86,14 +87,12 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
+        public ActionResult Edit([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
         {
             if (ModelState.IsValid)
             {
-
-            
                 db.Entry(budget).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(budget);
@@ -101,13 +100,13 @@ namespace HouseholdBudget.Controllers
 
         // GET: Budgets/Delete/5
         [Authorize]
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Budget budget = await db.Budget.FindAsync(id);
+            Budget budget = db.Budget.Find(id);
             if (budget == null)
             {
                 return HttpNotFound();
@@ -119,11 +118,11 @@ namespace HouseholdBudget.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Budget budget = await db.Budget.FindAsync(id);
+            Budget budget = db.Budget.Find(id);
             db.Budget.Remove(budget);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

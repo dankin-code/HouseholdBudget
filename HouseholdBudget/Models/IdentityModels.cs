@@ -12,7 +12,8 @@ namespace HouseholdBudget.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string HouseholdName { get; set; }
+        public int HouseholdId { get; set; }
+        public virtual Household Household { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

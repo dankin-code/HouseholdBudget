@@ -1,4 +1,4 @@
-﻿@model HouseholdBudget.Models.ApplicationUser
+﻿@model IEnumerable<HouseholdBudget.Models.Account>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -47,7 +47,15 @@
 <br />
 
 <!--Begin Transactions area-->
+@using (Html.BeginForm())
+{
 <div class="row">
+<div class="form-group">
+@Html.Label("Transactions")
+@Html.TextBox("SearchTransactions", "", new { @class = "form-control" })
+<button id="btnSearch" class="btn btn-primary">Search Transactions</button>
+<button id="btnReset" class="btn btn-primary">Reset</button>
+
 <h2>Transactions</h2>
     <div class="table-responsive">
         <table class="table table-condensed table-striped table-hover">
@@ -64,6 +72,8 @@
         </table>
     </div>
 </div>
+</div>
+}
 <!--End Transaction area-->
 <br />
 <br />
