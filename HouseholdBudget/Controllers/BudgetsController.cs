@@ -54,9 +54,9 @@ namespace HouseholdBudget.Controllers
         public ActionResult Create([Bind(Include = "Id,BudgetName,HouseholdId")] Budget budget)
         {
             if (ModelState.IsValid)
-
+            { 
+          
                 budget.HouseholdId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId; 
-
                 db.Budget.Add(budget);
                 db.SaveChanges();
                 return RedirectToAction("Index");

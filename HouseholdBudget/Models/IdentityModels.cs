@@ -38,7 +38,7 @@ namespace HouseholdBudget.Models
 
         public DbSet<Household> Household { get; set; }
         public DbSet<Category> Category { get; set; }
-        //public DbSet<CategoryHousehold> CategoryHousehold { get; set; }
+        public DbSet<CategoryHousehold> CategoryHousehold { get; set; }
         public DbSet<Budget> Budget { get; set; }
         public DbSet<BudgetItems> BudgetItems { get; set; }
         public DbSet<Account> Account { get; set; }

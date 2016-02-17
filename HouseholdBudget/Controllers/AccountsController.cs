@@ -54,6 +54,7 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
+                account.HouseholdId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
                 db.Account.Add(account);
                 db.SaveChanges();
                 return RedirectToAction("Index");

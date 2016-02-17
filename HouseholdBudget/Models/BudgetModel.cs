@@ -21,15 +21,13 @@ namespace HouseholdBudget.Models
         public string CategoryName { get; set; }
     }
 
-    //public class CategoryHousehold
-    //{
-    //    public int Id { get; set; }
-    //    [Required]
-    //    public Household HouseHold { get; set; }
-    //    [Required]
-    //    public Category Category { get; set; }
+    public class CategoryHousehold
+    {
+        public int Id { get; set; }
+        public Household HouseHold { get; set; }
+        public Category Category { get; set; }
 
-    //}
+    }
 
     public class Budget
     {
