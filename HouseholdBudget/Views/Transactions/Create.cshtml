@@ -47,11 +47,19 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.TransactionEnteredBy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TransactionEnteredBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("TransactionEnteredBy", null, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TransactionEnteredBy, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.AccountId, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -76,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReconciledById, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReconciledById, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReconciledById, null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ReconciledById, "", new { @class = "text-danger" })
             </div>
         </div>

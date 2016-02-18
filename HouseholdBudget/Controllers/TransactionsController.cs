@@ -41,7 +41,9 @@ namespace HouseholdBudget.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.AccountId = new SelectList(db.Account, "Id", "Name");
+            ViewBag.AccountId = new SelectList(db.Account, "Id", "AccountName");
+            ViewBag.ReconciledBy = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.TransactionEnteredBy = new SelectList(db.Users, "Id", "FirstName");
             ViewBag.CategoryName = new SelectList(db.Category, "Id", "CategoryName");
             return View();
         }
@@ -56,6 +58,7 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
+                transaction.TransactionEnteredBy = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
                 db.Transaction.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
