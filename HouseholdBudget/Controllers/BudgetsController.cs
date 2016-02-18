@@ -59,7 +59,7 @@ namespace HouseholdBudget.Controllers
                 budget.HouseholdId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId; 
                 db.Budget.Add(budget);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","BudgetItems");
             }
 
             return View(budget);

@@ -57,7 +57,8 @@ namespace HouseholdBudget.Controllers
         public ActionResult Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
         {
             if (ModelState.IsValid)
-            {
+            { 
+
                 transaction.TransactionEnteredBy = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
                 db.Transaction.Add(transaction);
                 db.SaveChanges();
