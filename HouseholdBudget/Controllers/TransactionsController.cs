@@ -48,6 +48,14 @@ namespace HouseholdBudget.Controllers
             return View();
         }
 
+        //Calculate the account balance
+        //accountbalance = accountbalance + account.Balance;
+        //public decimal CalculateAccountBalance(decimal accountBalance)
+        //{
+        //    return accountBalance = accountBalance + TransactionAmount;
+        //}
+
+
         // POST: Transactions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,8 +65,9 @@ namespace HouseholdBudget.Controllers
         public ActionResult Create([Bind(Include = "Id,TransactionDate,TransactionDescription,TransactionAmount,CategoryName,TransactionEnteredBy,Reconciled,ReconciledAmount,ReconciledById,AccountId")] Transaction transaction)
         {
             if (ModelState.IsValid)
-            { 
-
+            {
+                //var balance = balance + transaction.TransactionAmount;
+               
                 transaction.TransactionEnteredBy = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
                 db.Transaction.Add(transaction);
                 db.SaveChanges();

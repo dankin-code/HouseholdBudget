@@ -13,7 +13,7 @@ namespace HouseholdBudget.Controllers
     public class AccountsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+      
         // GET: Accounts
         [Authorize]
         public ActionResult Index()
