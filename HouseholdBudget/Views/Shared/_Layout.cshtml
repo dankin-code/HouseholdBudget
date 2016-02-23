@@ -8,26 +8,26 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <!-- Bootstrap Core CSS -->
-    @Styles.Render("~Content/bower_components/bootstrap/dist/css/bootstrap.min.css")
+    <link href="~Content/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    @Styles.Render("~Content/bower_components/metisMenu/dist/metisMenu.min.css")
-    @Styles.Render("~Content/dist/css/sb-admin-2.css")
-    <!-- Custom Fonts -->
-    @Styles.Render("~Content/bower_components/font-awesome/css/font-awesome.min.css")
-    <!-- MetisMenu CSS -->
-    @Styles.Render("~Content/bower_components/metisMenu/dist/metisMenu.min.css")
+    <link href="~Content/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    @Styles.Render("~Content/dist/css/sb-admin-2.css")
+    <link href="~Content/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="~Content/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- MetisMenu CSS -->
+    <link href="~Content/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~Content/dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Morris Charts CSS -->
-    @Styles.Render("~Content/bower_components/morrisjs/morris.css")
+    <link href="~Content/bower_components/morrisjs/morris.css" rel="stylesheet">
 
 
 
 </head>
 <body>
-    <div class="container">
-    <div row class="col-lg-12">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -39,18 +39,16 @@
             </div>
             <div class="nav navbar-top-links">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Household", "Index", "Households")</li>
-                    <li>@Html.ActionLink("Accounts", "Index", "Accounts")</li>
-                    <li>@Html.ActionLink("Transactions", "Index", "Transactions")</li>
-                    <li>@Html.ActionLink("Budget", "Index", "Budgets")</li>
-                    <li>@Html.ActionLink("Budget Items", "Index", "BudgetItems")</li>
+                        <li>@Html.ActionLink("Household", "Index", "Households")</li>
+                        <li>@Html.ActionLink("Accounts", "Index", "Accounts")</li>
+                        <li>@Html.ActionLink("Transactions", "Index", "Transactions")</li>
+                        <li>@Html.ActionLink("Budget", "Index", "Budgets")</li>
+                        <li>@Html.ActionLink("Budget Items", "Index", "BudgetItems")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
-            </nav>
         </div>
-    </div>
+    </nav>
         <div class="container body-content">
             @RenderBody()
             <hr />
@@ -59,23 +57,23 @@
             </footer>
         </div>
 
-        @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
 
 
         <!-- jQuery -->
-        @Scripts.Render("~Content/bower_components/jquery/dist/jquery.min.js")
+        <script src="~Content/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap Core JavaScript -->
-        @Scripts.Render("~Content/bower_components/bootstrap/dist/js/bootstrap.min.js")
+        <script src="~Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- Metis Menu Plugin JavaScript -->
-        @Scripts.Render("~Content/bower_components/metisMenu/dist/metisMenu.min.js")
+        <script src="~Content/bower_components/metisMenu/dist/metisMenu.min.js"></script>
         <!-- Morris Charts JavaScript -->
-        @Scripts.Render("~Content/bower_components/raphael/raphael-min.js")
-        @Scripts.Render("~Content/bower_components/morrisjs/morris.min.js")
-        @Scripts.Render("~Content/js/morris-data.js")
+        <script src="~Content/bower_components/raphael/raphael-min.js"></script>
+        <script src="~Content/bower_components/morrisjs/morris.min.js"></script>
+        <script src="~Content/js/morris-data.js"></script>
         <!-- Custom Theme JavaScript -->
-        @Scripts.Render("~Content/dist/js/sb-admin-2.js")
-        @Scripts.Render("~/Content/bower_components/datatables-responsive/js/dataTables.responsive.js")
+        <script src="~Content/dist/js/sb-admin-2.js"></script>
+
 
         @RenderSection("scripts", required: false)
 </body>

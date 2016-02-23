@@ -2,60 +2,23 @@
 @{
     ViewBag.Title = "Home Page";
 }
+
 <div class="container-fluid">
     <br />
     <br />
-    @*<div class="panel panel-default">
-            <h1 class="panel-heading">Get Started</h1>
-            <div class="panel-body">
-                This is a web based budgeting app for households. It can be used to track actual income, and expenses while making projections.
-                To get started click on the link below to create a household <b>@Html.ActionLink("Create a New Household", "Create", "Households")</b>
-                or invite someone to join your household <b>@Html.ActionLink("Invite Someone to Join Your Household", "Create", "Invitations")</b>
-            </div>
-        </div>*@
-
-
     <div class="panel panel-default">
-        <h1 class="panel-heading">Dashboard</h1>
+        <div class="panel-heading">Get Started</div>
+        <div class="panel-body">
+            This is a web based budgeting app for households. It can be used to track actual income, and expenses while making projections.
+            To get started click on the link below to create a household <b>@Html.ActionLink("Create a New Household", "Create", "Households")</b>
+            or invite someone to join your household <b>@Html.ActionLink("Invite Someone to Join Your Household", "Create", "Invitations")</b>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Dashboard</div>
         <div class="panel-body">
             dashboard content
         </div>
     </div>
-
-
-    <div class="panel-heading">
-        <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-        <div class="pull-right">
-            <div class="btn-group">
-                <button type="button" class="btn btndefault btn-xs dropdown-toggle" data-toggle="dropdown">
-                    Actions
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu pull-right" role="menu">
-                    <li>
-                        <a href="#">Action</a>
-                    </li>
-                    <li>
-                        <a href="#">Another action</a>
-                    </li>
-                    <li>
-                        <a href="#">Something else here
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">Separated link</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="panel-body">
-        <div id="morris-area-chart"></div>
-    </div>
-</div>
-
-
-
 
 </div>
