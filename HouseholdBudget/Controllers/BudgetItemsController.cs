@@ -56,7 +56,7 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
-                budgetItems.BudgetId = db.Budget.FirstOrDefault(u => u.Id == budgetItems.BudgetId).Id;                
+                budgetItems.BudgetId = db.Budget.FirstOrDefault(u => u.Id == budgetItems.BudgetId).Id;
                 db.BudgetItems.Add(budgetItems);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -98,6 +98,7 @@ namespace HouseholdBudget.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.BudgetId = new SelectList(db.Budget, "Id", "BudgetName");
             ViewBag.CategoryName = new SelectList(db.Category, "Id", "CategoryName");
 

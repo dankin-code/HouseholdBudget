@@ -15,6 +15,7 @@ namespace HouseholdBudget.Models
         [Display(Name = "Household Name")]
         public string HouseholdName { get; set; }
         public virtual ICollection<ApplicationUser> Members { get; set; }
+
     }
 
     public class Category
@@ -22,6 +23,7 @@ namespace HouseholdBudget.Models
         public int Id { get; set; }
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
+
     }
 
     public class CategoryHousehold
@@ -41,6 +43,7 @@ namespace HouseholdBudget.Models
         public string BudgetName { get; set; }
         [Display(Name = "Household Id")]
         public int HouseholdId { get; set; }
+
     }
 
     public class BudgetItems
@@ -112,6 +115,16 @@ namespace HouseholdBudget.Models
         //public int UserId { get; set; }
         [Display(Name = "Household Id")]
         public int HouseholdId { get; set; }
+    }
+
+    public class DashboardViewModel
+    {
+        public Household households { get; set; }
+        public Invitation invitations { get; set; }
+        public Account accounts { get; set; }
+        public Category categories { get; set; }
+        public Budget budget { get; set; }
+        public Transaction transactions { get; set; }
     }
 
 
