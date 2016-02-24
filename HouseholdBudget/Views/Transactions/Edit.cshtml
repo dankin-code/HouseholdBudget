@@ -1,10 +1,10 @@
 ﻿@model HouseholdBudget.Models.Transaction
 
 @{
-    ViewBag.Title = "Edit a Transaction";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Edit a Transaction</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -100,8 +100,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" }
-)
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

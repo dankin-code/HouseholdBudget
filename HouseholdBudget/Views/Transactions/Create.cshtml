@@ -1,10 +1,10 @@
 ﻿@model HouseholdBudget.Models.Transaction
 
 @{
-    ViewBag.Title = "Create a Transaction";
+    ViewBag.Title = "Create";
 }
 
-<h2>Create a Transaction</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -85,7 +85,6 @@
             @Html.LabelFor(model => model.ReconciledById, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ReconciledById, null, new { @class = "form-control" })
-                @*@Html.ListBox("ReconciledById", null, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.ReconciledById, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +98,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

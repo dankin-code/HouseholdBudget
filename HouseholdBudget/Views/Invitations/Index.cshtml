@@ -7,13 +7,15 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create a New Invitation", "Create", null, new { @class = "btn btn-info" }
-)
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ToEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.HouseholdId)
@@ -25,6 +27,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ToEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HouseholdId)

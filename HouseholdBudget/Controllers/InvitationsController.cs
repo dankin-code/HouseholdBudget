@@ -52,19 +52,17 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,ToEmail,HouseholdId")] Invitation invitation)
+        public ActionResult Create([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
-                invitation.HouseholdId = db.Household.FirstOrDefault(u => u.HouseholdName == User.Identity.Name).Id;
-
-                //send email notification of invitation
 
                 var myMessage = new SendGrid.SendGridMessage();
                 myMessage.AddTo(invitation.ToEmail);       //need to find how to pass a variable --ToEmail
                 myMessage.From = new MailAddress("dkinai@hotmail.com", "Daniel Kinai");
                 myMessage.Subject = "Join my budget app";
                 myMessage.Text = "Join my budget app";
+
                 var transportWeb = new SendGrid.Web("SENDGRID API KEY");
                 transportWeb.DeliverAsync(myMessage).Wait();
 
@@ -98,7 +96,7 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,ToEmail,HouseholdId")] Invitation invitation)
+        public ActionResult Edit([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {

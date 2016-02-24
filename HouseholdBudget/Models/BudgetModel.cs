@@ -109,21 +109,8 @@ namespace HouseholdBudget.Models
         [Required]
         [Display(Name = "Invitee's Email Address")]
         public string ToEmail { get; set; }
-        //public int UserId { get; set; }
+        public int UserId { get; set; }
         [Display(Name = "Household Id")]
         public int HouseholdId { get; set; }
     }
-
-    public class DashboardViewModel
-    {
-        public int HouseholdId { get; set; }
-        public ICollection<Invitation> Invitations { get; set; }
-        public ICollection<Account> Accounts { get; set; }
-        public Budget CurrentBudget { get; set; }
-        public ICollection<BudgetItems> BudgetItemsList { get; set; }
-        public List<Transaction> Transactions { get; set; }
-    }
-
-
-
 }

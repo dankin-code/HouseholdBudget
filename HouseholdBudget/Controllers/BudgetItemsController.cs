@@ -56,6 +56,7 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 budgetItems.BudgetId = db.Budget.FirstOrDefault(u => u.Id == budgetItems.BudgetId).Id;
                 db.BudgetItems.Add(budgetItems);
                 db.SaveChanges();
