@@ -208,7 +208,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BudgetModel.cs" />
-    <Compile Include="Models\DashboardViewModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -661,6 +661,7 @@
     <Content Include="Content\bower_components\raphael\license.txt" />
     <Content Include="Content\bower_components\raphael\raphael-min.js" />
     <Content Include="Content\bower_components\raphael\raphael.js" />
+    <Content Include="Content\ChartJs\Chart.js" />
     <Content Include="Content\dist\css\sb-admin-2.css" />
     <Content Include="Content\dist\css\timeline.css" />
     <Content Include="Content\dist\js\sb-admin-2.js" />
@@ -1077,7 +1078,6 @@
     <Content Include="Views\Budgets\Details.cshtml" />
     <Content Include="Views\Budgets\Edit.cshtml" />
     <Content Include="Views\Budgets\Index.cshtml" />
-    <Content Include="Views\BudgetItems\OriginalCreate.cshtml" />
     <Content Include="Views\BudgetItems\Delete.cshtml" />
     <Content Include="Views\BudgetItems\Details.cshtml" />
     <Content Include="Views\BudgetItems\Edit.cshtml" />

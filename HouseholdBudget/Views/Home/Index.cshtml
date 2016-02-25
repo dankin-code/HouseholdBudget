@@ -1,8 +1,21 @@
-﻿@model HouseholdBudget.Models.DashboardViewModel
+﻿@model IEnumerable<HouseholdBudget.Models.Account>
 @{
     ViewBag.Title = "Home Page";
 }
 
-@*<div style="text-align:right">Welcome: @Model.household.HouseholdName</div>*@
+@Scripts.Render("~/Content/ChartJs/Chart.js")
+
 <br />
 <br />
+
+<div class="fa-bar-chart">
+
+</div>
+
+<canvas id="myChart" width="400" height="400">
+    // Get the context of the canvas element we want to select
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myNewChart = new Chart(ctx).PolarArea(data);
+
+</canvas>
+

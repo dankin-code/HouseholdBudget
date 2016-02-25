@@ -44,6 +44,7 @@ namespace HouseholdBudget.Models
         public DbSet<Account> Account { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
         public DbSet<Invitation> Invitation { get; set; }
+        public DbSet<DashboardModel> Dashboard { get; set; }
 
     }
 }
