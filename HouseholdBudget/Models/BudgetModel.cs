@@ -52,6 +52,7 @@ namespace HouseholdBudget.Models
         [Required]
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
+        [Required]
         [Display(Name = "Budget Id")]
         public int BudgetId { get; set; }
     }

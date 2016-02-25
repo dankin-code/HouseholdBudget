@@ -1,74 +1,8 @@
-﻿@model IEnumerable<HouseholdBudget.Models.Account>
+﻿@model HouseholdBudget.Models.DashboardViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
+@*<div style="text-align:right">Welcome: @Model.household.HouseholdName</div>*@
 <br />
 <br />
-
-<!--Begin household area-->
-<div class="row">
-    <h2>Household</h2>
-    <div class="table-responsive">
-        <table class="table table-condensed table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Household Name</th>
-                    <th>Members</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-   
-<!--End household area-->
-<br />
-<br />
-<br />
-<br />
-
-<!--Begin Accounts area-->
-<h2>Accounts</h2>
-<div class="table-responsive">
-    <table class="table table-condensed table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Account Name</th>
-                <th>Account Description</th>
-                <th>Account Balance</th>
-            </tr>
-        </thead>
-    </table>
-</div>
-<!--End Accounts area-->
-<br />
-<br />
-<br />
-<br />
-
-<!--Begin Transactions area-->
-
-<h2>Transactions</h2>
-    <div class="table-responsive">
-        <table class="table table-condensed table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                    <th>Reconciled Amount</th>
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-</div>
-</div>
-}
-<!--End Transaction area-->
-<br />
-<br />
-<br />
-<br />
-
