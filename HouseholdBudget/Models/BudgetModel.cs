@@ -15,6 +15,11 @@ namespace HouseholdBudget.Models
         [Display(Name = "Household Name")]
         public string HouseholdName { get; set; }
         public virtual ICollection<ApplicationUser> Members { get; set; }
+        public virtual ICollection<Budget> BudgetItems { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<Transaction> Transaction { get; set; }
+        public virtual ICollection<Invitation> Invitation { get; set; }
+
     }
 
     public class Category
@@ -24,13 +29,12 @@ namespace HouseholdBudget.Models
         public string CategoryName { get; set; }
     }
 
-    public class CategoryHousehold
-    {
-        public int Id { get; set; }
-        public Household HouseHold { get; set; }
-        public Category Category { get; set; }
-
-    }
+    //public class CategoryHousehold
+    //{
+    //    public int Id { get; set; }
+    //    public Household HouseHold { get; set; }
+    //    public Category Category { get; set; }
+    //}
 
     public class Budget
     {
@@ -50,8 +54,8 @@ namespace HouseholdBudget.Models
         [Required]
         public decimal Amount { get; set; }
         [Required]
-        [Display(Name = "Category Name")]
-        public string CategoryName { get; set; }
+        [Display(Name = "Category Id")]
+        public int CategoryId { get; set; }
         [Required]
         [Display(Name = "Budget Id")]
         public int BudgetId { get; set; }
@@ -100,18 +104,18 @@ namespace HouseholdBudget.Models
         public Nullable<int> ReconciledById { get; set; }
         [Display(Name = "Account Id")]
         public int AccountId { get; set; }
-
     }
-
-    public class Invitation
+        public class Invitation
     {
         [Display(Name = "Invitation Id")]
         public int Id { get; set; }
         [Required]
         [Display(Name = "Invitee's Email Address")]
         public string ToEmail { get; set; }
-        public int UserId { get; set; }
+        public Guid JoinCode { get; set; }
         [Display(Name = "Household Id")]
         public int HouseholdId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        public virtual Household Household { get; set; }
     }
 }

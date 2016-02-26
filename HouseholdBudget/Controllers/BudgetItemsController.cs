@@ -41,8 +41,8 @@ namespace HouseholdBudget.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            //ViewBag.BudgetId = new SelectList(db.Budget, "Id", "BudgetName");
-            ViewBag.CategoryName = new SelectList(db.Category, "Id", "CategoryName");
+            ViewBag.BudgetId = new SelectList(db.Budget, "Id", "BudgetName");
+            ViewBag.CategoryId = new SelectList(db.Category, "Id", "CategoryName");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace HouseholdBudget.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,Amount,CategoryName,BudgetId")] BudgetItems budgetItems)
+        public ActionResult Create([Bind(Include = "Id,Amount,CategoryId,BudgetId")] BudgetItems budgetItems)
         {
             if (ModelState.IsValid)
             {

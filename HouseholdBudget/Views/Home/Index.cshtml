@@ -1,21 +1,20 @@
 ﻿@model IEnumerable<HouseholdBudget.Models.Account>
 @{
+    
     ViewBag.Title = "Home Page";
 }
 
-@Scripts.Render("~/Content/ChartJs/Chart.js")
-
 <br />
 <br />
+<br />
+<!--State who is logged in and write the first and last name -->
 
-<div class="fa-bar-chart">
 
-</div>
+<!--Display a list of Account-->
 
-<canvas id="myChart" width="400" height="400">
-    // Get the context of the canvas element we want to select
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myNewChart = new Chart(ctx).PolarArea(data);
+@Model.
+<!--Display a list of Transactions-->
 
-</canvas>
+
+<!--Display contents of the budgetItems-->
 

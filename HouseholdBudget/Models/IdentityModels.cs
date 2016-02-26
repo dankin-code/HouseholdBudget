@@ -36,15 +36,15 @@ namespace HouseholdBudget.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<Household> Household { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<CategoryHousehold> CategoryHousehold { get; set; }
-        public DbSet<Budget> Budget { get; set; }
-        public DbSet<BudgetItems> BudgetItems { get; set; }
-        public DbSet<Account> Account { get; set; }
-        public DbSet<Transaction> Transaction { get; set; }
-        public DbSet<Invitation> Invitation { get; set; }
-        public DbSet<DashboardModel> Dashboard { get; set; }
+        public virtual DbSet<Household> Household { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        //public virtual DbSet<CategoryHousehold> CategoryHousehold { get; set; }
+        public virtual DbSet<Budget> Budget { get; set; }
+        public virtual DbSet<BudgetItems> BudgetItems { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Transaction> Transaction { get; set; }
+        public virtual DbSet<Invitation> Invitation { get; set; }
+        //public virtual DbSet<Dashboard> Dashboard { get; set; }
 
     }
 }

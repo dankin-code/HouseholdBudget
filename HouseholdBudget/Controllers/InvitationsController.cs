@@ -39,6 +39,17 @@ namespace HouseholdBudget.Controllers
             return View(invitation);
         }
 
+        
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public ActionResult Join(int Id, string JoinCode)
+        //{
+        //    Invitation.JoinCode = Guid.NewGuid();
+            
+
+        //}
+        
+
         // GET: Invitations/Create
         [Authorize]
         public ActionResult Create()
@@ -63,7 +74,7 @@ namespace HouseholdBudget.Controllers
                 myMessage.Subject = "Join my budget app";
                 myMessage.Text = "Join my budget app";
 
-                var transportWeb = new SendGrid.Web("SENDGRID API KEY");
+                var transportWeb = new SendGrid.Web("SENDGRID API KEY"); //key
                 transportWeb.DeliverAsync(myMessage).Wait();
 
                 db.Invitation.Add(invitation);
