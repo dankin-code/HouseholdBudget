@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<HouseholdBudget.Models.Account>
 
+
 @{
     
     ViewBag.Title = "Index";
@@ -61,9 +62,9 @@
                 @Html.DisplayFor(modelItem => item.HouseholdId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
             </td>
         </tr>
     }

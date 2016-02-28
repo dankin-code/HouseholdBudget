@@ -14,16 +14,18 @@ namespace HouseholdBudget.Controllers
         [Authorize]
         public ActionResult Index()
         {
-           //display a list of accounts for the current household
-
+            //display a list of accounts for the current household
+            var currentHousehold = db.Household;
             //display sum of account balance pg. 110 Linq pockect reference
             
             
                   
 
-            return View();
+            return View(currentHousehold.ToList());
 
         }
+
+
 
         [Authorize]
         public ActionResult About()

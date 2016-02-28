@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<HouseholdBudget.Models.Account>
+@using HouseholdBudget.Models
+
 @{
-    
+
     ViewBag.Title = "Home Page";
+
 }
 
 <br />
@@ -10,9 +13,21 @@
 <!--State who is logged in and write the first and last name -->
 
 
+
+
+<div class="dataTable_wrapper">
+<table class="table table-striped table-bordered">
+<tr>
+<th>
+</table>
+</div>
 <!--Display a list of Account-->
 
-@Model.
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(modelItem => item.AccountName)
+    @Html.DisplayFor(modelItem => item.Balance)
+}
 <!--Display a list of Transactions-->
 
 
