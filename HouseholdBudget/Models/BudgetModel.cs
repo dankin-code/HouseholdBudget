@@ -9,6 +9,13 @@ namespace HouseholdBudget.Models
 {
     public class Household
     {
+        public Household()
+        {
+            //Account = new HashSet<Account>();
+            //BudgetItems = new HashSet<BudgetItems>();
+            //Transaction = new HashSet<Transaction>();
+            //Invitation = new HashSet<Invitation>();
+        }
         [Display(Name = "Household Id")]
         public int Id { get; set; }
         [Required]
@@ -24,6 +31,7 @@ namespace HouseholdBudget.Models
 
     public class Category
     {
+        [Display(Name = "Category Id")]
         public int Id { get; set; }
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
@@ -118,4 +126,5 @@ namespace HouseholdBudget.Models
         public virtual ApplicationUser User { get; set; }
         public virtual Household Household { get; set; }
     }
+
 }

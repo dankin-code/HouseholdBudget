@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HouseholdBudget.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HouseholdBudget.Controllers
 {
@@ -14,17 +15,15 @@ namespace HouseholdBudget.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            //display a list of accounts for the current household
-            var currentHousehold = db.Household;
-            //display sum of account balance pg. 110 Linq pockect reference
-            
-            
-                  
 
-            return View(currentHousehold.ToList());
+            return View();
 
         }
 
+        public ActionResult Transaction()
+        {
+            return PartialView("_IndexPartial");
+        }
 
 
         [Authorize]
