@@ -26,7 +26,7 @@
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -43,12 +43,13 @@
                     <li>@Html.ActionLink("Transactions", "Index", "Transactions")</li>
                     <li>@Html.ActionLink("Budget", "Index", "Budgets")</li>
                     <li>@Html.ActionLink("Budget Items", "Index", "BudgetItems")</li>
+                    <li>@Html.ActionLink("Invitations", "Index", "Invitations")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         <br />
         <br />
         <br />

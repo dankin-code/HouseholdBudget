@@ -7,8 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HouseholdBudget.Models;
-using SendGrid;
-using System.Net.Mail;
 
 namespace HouseholdBudget.Controllers
 {
@@ -17,14 +15,13 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Invitations
-        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Invitation.ToList());
+            var invitation = db.Invitation.Include(i => i.Household);
+            return View(invitation.ToList());
         }
 
         // GET: Invitations/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,21 +36,10 @@ namespace HouseholdBudget.Controllers
             return View(invitation);
         }
 
-        
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public ActionResult Join(int Id, string JoinCode)
-        //{
-        //    Invitation.JoinCode = Guid.NewGuid();
-            
-
-        //}
-        
-
         // GET: Invitations/Create
-        [Authorize]
         public ActionResult Create()
         {
+            ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName");
             return View();
         }
 
@@ -62,31 +48,20 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Create([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
+        public ActionResult Create([Bind(Include = "Id,ToEmail,JoinCode,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
-
-                var myMessage = new SendGrid.SendGridMessage();
-                myMessage.AddTo(invitation.ToEmail);       //need to find how to pass a variable --ToEmail
-                myMessage.From = new MailAddress("dkinai@hotmail.com", "Daniel Kinai");
-                myMessage.Subject = "Join my budget app";
-                myMessage.Text = "Join my budget app";
-
-                var transportWeb = new SendGrid.Web("SENDGRID API KEY"); //key
-                transportWeb.DeliverAsync(myMessage).Wait();
-
                 db.Invitation.Add(invitation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName", invitation.HouseholdId);
             return View(invitation);
         }
 
         // GET: Invitations/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +73,7 @@ namespace HouseholdBudget.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName", invitation.HouseholdId);
             return View(invitation);
         }
 
@@ -106,8 +82,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,ToEmail,UserId,HouseholdId")] Invitation invitation)
+        public ActionResult Edit([Bind(Include = "Id,ToEmail,JoinCode,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
@@ -115,11 +90,11 @@ namespace HouseholdBudget.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName", invitation.HouseholdId);
             return View(invitation);
         }
 
         // GET: Invitations/Delete/5
-        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -137,7 +112,6 @@ namespace HouseholdBudget.Controllers
         // POST: Invitations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Invitation invitation = db.Invitation.Find(id);

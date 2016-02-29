@@ -4,18 +4,128 @@
     ViewBag.Title = "Dashboard";
 }
 
+<div class="container-fluid">
 <h2>Dashboard</h2>
+<div class="row">
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Household)
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Household)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
+    <div class="col-md-offset-1"></div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-        </td>
-    </tr>
-}
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Invitations)
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Invitations)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 
-</table>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Accounts)
+                </th>
+            </tr>
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Accounts)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="col-md-offset-1"></div>
+
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Budgets)
+                </th>
+            </tr>
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Budgets)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Transactions)
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Transactions)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="col-md-offset-1"></div>
+
+        <div class="col-md-5">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BudgetItems)
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BudgetItems)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+
+    </div>
+

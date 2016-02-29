@@ -1,12 +1,10 @@
 ﻿@model HouseholdBudget.Models.Invitation
 
 @{
-    
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
-
 
 @using (Html.BeginForm()) 
 {
@@ -25,9 +23,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HouseholdId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.JoinCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HouseholdId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.JoinCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.JoinCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HouseholdId, "HouseholdId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("HouseholdId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.HouseholdId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +49,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
