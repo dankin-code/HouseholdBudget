@@ -11,10 +11,10 @@ namespace HouseholdBudget.Models
     {
         public Household()
         {
-            //Account = new HashSet<Account>();
-            //BudgetItems = new HashSet<BudgetItems>();
-            //Transaction = new HashSet<Transaction>();
-            //Invitation = new HashSet<Invitation>();
+            Account = new HashSet<Account>();
+            Budget = new HashSet<Budget>();
+            Transaction = new HashSet<Transaction>();
+            Invitation = new HashSet<Invitation>();
         }
         [Display(Name = "Household Id")]
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace HouseholdBudget.Models
         [Display(Name = "Household Name")]
         public string HouseholdName { get; set; }
         public virtual ICollection<ApplicationUser> Members { get; set; }
-        public virtual ICollection<Budget> BudgetItems { get; set; }
+        public virtual ICollection<Budget> Budget { get; set; }
         public virtual ICollection<Account> Account { get; set; }
         public virtual ICollection<Transaction> Transaction { get; set; }
         public virtual ICollection<Invitation> Invitation { get; set; }
@@ -46,6 +46,10 @@ namespace HouseholdBudget.Models
 
     public class Budget
     {
+        public Budget()
+        {
+
+        }
         [Display(Name = "Budget Id")]
         public int Id { get; set; }
         [Required]
@@ -53,6 +57,7 @@ namespace HouseholdBudget.Models
         public string BudgetName { get; set; }
         [Display(Name = "Household Id")]
         public int HouseholdId { get; set; }
+        public ICollection<BudgetItems> BudgetItems{get;set;}
     }
 
     public class BudgetItems
@@ -71,6 +76,10 @@ namespace HouseholdBudget.Models
 
     public class Account
     {
+        public Account()
+        {
+
+        }
         [Display(Name = "Account Id")]
         public int Id { get; set; }
         [Required]
@@ -90,6 +99,10 @@ namespace HouseholdBudget.Models
 
     public class Transaction
     {
+        public Transaction()
+        {
+
+        }
         [Display(Name = "Transaction Id")]
         public int Id { get; set; }
         [Required]
@@ -101,6 +114,7 @@ namespace HouseholdBudget.Models
         [Required]
         [Display(Name = "Transaction Amount")]
         public decimal TransactionAmount { get; set; }
+        [Required]
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
         [Display(Name = "Transaction Entered By")]
@@ -115,6 +129,10 @@ namespace HouseholdBudget.Models
     }
         public class Invitation
     {
+        public Invitation()
+        {
+
+        }
         [Display(Name = "Invitation Id")]
         public int Id { get; set; }
         [Required]

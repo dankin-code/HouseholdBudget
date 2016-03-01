@@ -1,4 +1,6 @@
-﻿@model IEnumerable<HouseholdBudget.Models.Dashboard>
+﻿@model IEnumerable<HouseholdBudget.Models.DashboardViewModel>
+
+
 
 @{
     ViewBag.Title = "Dashboard";
@@ -11,14 +13,14 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Household)
+                    @Html.DisplayNameFor(model => model.household)
                 </th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Household)
+                        @Html.DisplayFor(modelItem => item.household)
                     </td>
                 </tr>
             }
@@ -31,14 +33,14 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Invitations)
+                    @Html.DisplayNameFor(model => model.invitations)
                 </th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Invitations)
+                        @Html.DisplayFor(modelItem => item.invitations)
                     </td>
                 </tr>
             }
@@ -52,14 +54,14 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Accounts)
+                    @Html.DisplayNameFor(model => model.accounts)
                 </th>
             </tr>
             @foreach (var item in Model)
         {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Accounts)
+                        @Html.DisplayFor(modelItem => item.accounts)
                     </td>
                 </tr>
             }
@@ -72,14 +74,14 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Budgets)
+                    @Html.DisplayNameFor(model => model.budgets)
                 </th>
             </tr>
             @foreach (var item in Model)
         {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Budgets)
+                        @Html.DisplayFor(modelItem => item.budgets)
                     </td>
                 </tr>
             }
@@ -92,14 +94,14 @@
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Transactions)
+                        @Html.DisplayNameFor(model => model.transactions)
                     </th>
                 </tr>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Transactions)
+                            @Html.DisplayFor(modelItem => item.transactions)
                         </td>
                     </tr>
                 }
@@ -112,14 +114,14 @@
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.BudgetItems)
+                        @Html.DisplayNameFor(model => model.budgetItems)
                     </th>
                 </tr>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.BudgetItems)
+                            @Html.DisplayFor(modelItem => item.budgetItems)
                         </td>
                     </tr>
                 }
@@ -129,3 +131,4 @@
 
     </div>
 
+</div>

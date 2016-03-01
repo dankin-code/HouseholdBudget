@@ -95,6 +95,26 @@ namespace HouseholdBudget.Controllers
             return View(household);
         }
 
+        // POST: Households/Join
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Join([Bind(Include = "Id,HouseholdName,JoinCode")] Household household)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Household.Add(household);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(household);
+        }
+
+
+
         // GET: Households/Delete/5
         [Authorize]
         public ActionResult Delete(int? id)

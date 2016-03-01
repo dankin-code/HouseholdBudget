@@ -6,7 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using System.Net.Mail;
 using HouseholdBudget.Models;
+using System.Text;
+using System.Net.Mime;
+
 
 namespace HouseholdBudget.Controllers
 {
@@ -52,6 +57,18 @@ namespace HouseholdBudget.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var myMessage = new SendGrid.SendGridMessage();
+                myMessage.AddTo("test@sendgrid.com");
+                myMessage.From = new MailAddress("you@youremail.com", "First Last");
+                myMessage.Subject = "Sending with SendGrid is Fun";
+                myMessage.Text = "and easy to do anywhere, even with C#";
+
+                var transportWeb = new SendGrid.Web("SENDGRID_APIKEY");
+                transportWeb.Deliver(myMessage).Wait();
+
+
+
                 db.Invitation.Add(invitation);
                 db.SaveChanges();
                 return RedirectToAction("Index");

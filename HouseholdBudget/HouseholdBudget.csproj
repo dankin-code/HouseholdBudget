@@ -380,12 +380,12 @@
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\BudgetItems\Create.cshtml" />
+    <Content Include="Views\Dashboards\Index.cshtml" />
     <Content Include="Views\Invitations\Create.cshtml" />
     <Content Include="Views\Invitations\Delete.cshtml" />
     <Content Include="Views\Invitations\Details.cshtml" />
     <Content Include="Views\Invitations\Edit.cshtml" />
     <Content Include="Views\Invitations\Index.cshtml" />
-    <Content Include="Views\Dashboards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

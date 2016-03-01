@@ -45,10 +45,5 @@ namespace HouseholdBudget.Models
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Invitation> Invitation { get; set; }
 
-        public System.Data.Entity.DbSet<HouseholdBudget.Models.Dashboard> Dashboards { get; set; }
-
-        //public System.Data.Entity.DbSet<HouseholdBudget.Models.ApplicationUser> ApplicationUsers { get; set; }
-        //public virtual DbSet<DashboardViewModel> DashboardViewModel { get; set; }
-
     }
 }
