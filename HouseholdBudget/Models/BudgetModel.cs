@@ -145,4 +145,19 @@ namespace HouseholdBudget.Models
         public virtual Household Household { get; set; }
     }
 
+    public class DashboardViewModel
+    {
+        public DashboardViewModel()
+        {
+
+        }
+        public Household householdIds { get; set; }
+        public ICollection<Account> accounts { get; set; }
+        public ICollection<Category> categories { get; set; }
+        public ICollection<Transaction> transactions { get; set; }
+        public ICollection<Invitation> invitations { get; set; }
+        public Budget budgets { get; set; }
+        public ICollection<BudgetItems> budgetItems { get; set; }
+    }
+
 }

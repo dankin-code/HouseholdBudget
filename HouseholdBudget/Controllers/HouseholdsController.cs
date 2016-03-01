@@ -95,22 +95,29 @@ namespace HouseholdBudget.Controllers
             return View(household);
         }
 
-        // POST: Households/Join
+        // Get: Households/Join
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Join([Bind(Include = "Id,HouseholdName,JoinCode")] Household household)
+        [AllowAnonymous]
+        public ActionResult Join(string JoinCode)
         {
             if (ModelState.IsValid)
             {
-                db.Household.Add(household);
+                var invitation = db.Invitation.FirstOrDefault(j => j.JoinCode.ToString() == JoinCode);
+                // build a way to 
+
+                // build a register view model with the household id from invitation and email from invitation
+                //check to see if the email exists in the system
+                // if the email exists send them to login, if not send to register page and pass the register view model just built
+
+                //db.Household.Add(household);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Dashboard");
             }
 
-            return View(household);
+            return View();
         }
 
 

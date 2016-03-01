@@ -72,5 +72,5 @@ C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBud
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\obj\Debug\HouseholdBudget.dll
 C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\obj\Debug\HouseholdBudget.pdb
-C:\Users\work\documents\visual studio 2015\Projects\HouseholdBudget\HouseholdBudget\obj\Debug\HouseholdBudget.csprojResolveAssemblyReference.cache
 C:\Users\work\Documents\Visual Studio 2015\Projects\HouseholdBudget\HouseholdBudget\bin\DotNet.Highcharts.dll
+C:\Users\work\Documents\Visual Studio 2015\Projects\HouseholdBudget\HouseholdBudget\obj\Debug\HouseholdBudget.csprojResolveAssemblyReference.cache

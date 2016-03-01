@@ -12,6 +12,7 @@
 </p>
 <div class="dataTable_wrapper">
     <table class="table table-striped table-bordered">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.TransactionDate)
@@ -42,7 +43,8 @@
             </th>
             <th></th>
         </tr>
-
+        </thead>
+        <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -80,6 +82,11 @@
                 </td>
             </tr>
         }
-
+        </tbody>
     </table>
 </div>
+
+
+<script>
+    $('.table').DataTable();
+</script>
