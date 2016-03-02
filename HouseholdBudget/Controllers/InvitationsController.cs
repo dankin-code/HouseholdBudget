@@ -20,6 +20,7 @@ namespace HouseholdBudget.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Invitations
+        [Authorize]
         public ActionResult Index()
         {
             var invitation = db.Invitation.Include(i => i.Household);
@@ -27,6 +28,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,9 +44,11 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Create
+        [Authorize]
         public ActionResult Create()
         {
-            ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName");
+            //ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName");
+            //ViewBag.JoinCode = Guid.NewGuid();
             return View();
         }
 
@@ -53,25 +57,51 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,ToEmail,JoinCode,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    var joinCode = Guid.NewGuid();
+                    invitation.JoinCode = joinCode;
+                    invitation.HouseholdId = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).HouseholdId;
+                    MailMessage myMessage = new MailMessage();
+                    myMessage.To.Add(new MailAddress(invitation.ToEmail, "To"));
+                    myMessage.From = new MailAddress(User.Identity.Name, "From");
+                    myMessage.Subject = "Please join my budget app";
 
-                var myMessage = new SendGrid.SendGridMessage();
-                myMessage.AddTo("test@sendgrid.com");
-                myMessage.From = new MailAddress("you@youremail.com", "First Last");
-                myMessage.Subject = "Sending with SendGrid is Fun";
-                myMessage.Text = "and easy to do anywhere, even with C#";
+                    var callbackUrl = Url.Action("Join", "Households", new { JoinCode = invitation.JoinCode }, protocol: Request.Url.Scheme);
 
-                var transportWeb = new SendGrid.Web("SENDGRID_APIKEY");
-                transportWeb.Deliver(myMessage).Wait();
+                    StringBuilder str = new StringBuilder();
+                    str.Append(@"<p>");
+                    str.Append(User.Identity.Name);
+                    str.Append(" I would like to invite you to join my household. Please click the link and </p><p><a href='");
+                    str.Append(callbackUrl);
+                    str.Append("'>Join</a></p>");
+
+                    myMessage.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(str.ToString(), null, MediaTypeNames.Text.Html));
+
+                    // Init SmtpClient and send
+                    SmtpClient smtpClient = new SmtpClient("smtp.sendgrid.net", Convert.ToInt32(587));
+                    System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("dkinai", "qwerty1$");
+                    smtpClient.Credentials = credentials;
+
+                    smtpClient.Send(myMessage);
+
+                    db.Invitation.Add(invitation);
+                    db.SaveChanges();
+                    return RedirectToAction("Index","Household");
 
 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-                db.Invitation.Add(invitation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
             }
 
             ViewBag.HouseholdId = new SelectList(db.Household, "Id", "HouseholdName", invitation.HouseholdId);
@@ -79,6 +109,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +130,7 @@ namespace HouseholdBudget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,ToEmail,JoinCode,HouseholdId")] Invitation invitation)
         {
             if (ModelState.IsValid)
@@ -112,6 +144,7 @@ namespace HouseholdBudget.Controllers
         }
 
         // GET: Invitations/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,6 +162,7 @@ namespace HouseholdBudget.Controllers
         // POST: Invitations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Invitation invitation = db.Invitation.Find(id);

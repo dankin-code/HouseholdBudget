@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="AzureConnection-Web.config Connection String" description="AzureConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=coderfoundry.cloudapp.net,55555;Initial Catalog=dkinai-budget;Persist Security Info=True;User ID=dkinai;Password=dankin" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\work\\Documents\\Visual\ Studio\ 2015\\Projects\\HouseholdBudget\\HouseholdBudget\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureConnection']/@connectionString" />
+  </parameter>
+  <parameter name="AzureConnection_DatabasePublish-Web.config Connection String" description="AzureConnection_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="AzureConnection_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\work\\Documents\\Visual\ Studio\ 2015\\Projects\\HouseholdBudget\\HouseholdBudget\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureConnection_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>
