@@ -12,7 +12,6 @@ namespace HouseholdBudget.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [Authorize]
         public ActionResult Index()
         {
 
@@ -20,6 +19,7 @@ namespace HouseholdBudget.Controllers
 
         }
 
+        [Authorize]
         public ActionResult Transaction()
         {
             return PartialView("_IndexPartial");
